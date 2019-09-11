@@ -58,4 +58,10 @@ export default {
   color: #eee;
   font-weight: 400;
 }
+
+@media (max-width: 420px) {
+  .header h1{
+    font-size: 30px;
+  }
+}
 </style>

@@ -23,7 +23,6 @@
 const post_url = "http://127.0.0.1:3333/admin/api/posts"
 
 export default {
-  props: ['labelID', 'searchInput'],
   data () {
     return {
       page: 1,
@@ -147,6 +146,11 @@ p {
 @media (max-width: 767px) {
   .body {
     width: 660px;
+  }
+}
+@media (max-width: 420px) {
+  .body {
+    width: 350px;
   }
 }
 </style>

@@ -12,8 +12,6 @@
             <li v-for="label in labels" :key="label._id" @click="showLabelPosts(label._id)"> {{label.name}} </li>
           </nav>
         </li>
-        <li>关于</li>
-        <li>留言板</li>
       </ul>
 
       <ul class="tool-list">
@@ -22,7 +20,7 @@
           <input type="text" v-model="search" placeholder="搜索" @keydown.enter="showSearchPosts">
         </li>
         <li class="style">
-          <i></i>
+          <i @click="changeColor"></i>
         </li>
         <li :class="{'login-btn': !hasLogin, 'logout-btn': hasLogin}" @click="handelLoginStatus('loginShow', !loginShow)">
           <i></i>
@@ -178,6 +176,10 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+
+    changeColor () {
+      document.body.className = document.body.className === "black" ? '' : 'black'
     }
   },
 }
@@ -316,7 +318,8 @@ ul, li {
   height: 40px;
 }
 
-.tool-list i {
+.tool-list li i {
+  background-color: #f0f0f0;
   border-radius: 50%;
 }
 
@@ -330,14 +333,8 @@ ul, li {
 }
 
 .tool-list .search {
-  background-color: #f0f0f0;
   display: flex;
   overflow: hidden;
-}
-
-.tool-list .search i {
-  flex-shrink: 0;
-  background-image: url('../assets/search.svg');
 }
 
 .tool-list .search.show-search {
@@ -349,6 +346,11 @@ ul, li {
   outline: none;
   border-style: none;
   background: #f0f0f0;
+}
+
+.tool-list .search i {
+  flex-shrink: 0;
+  background-image: url('../assets/search.svg');
 }
 
 .tool-list .search i:hover {
@@ -458,5 +460,69 @@ ul, li {
   background: #ccc;
   cursor: pointer;
   background-size: 100%;
+}
+
+@media (max-width: 420px) {
+  .continer .nav-bar-collapse .type-list li:first-of-type{
+    display: none;
+  }
+  .continer {
+    width: 100%;
+  }
+}
+</style>
+
+<style>
+.black .nav{
+  background-color: rgba(50, 50, 50, 0.97);
+  color: #ccc !important;
+}
+
+.black .nav .tool-list li {
+  background-color: #333;
+}
+
+.black .nav .tool-list li i {
+  background-color: #333;
+}
+
+.black .nav .tool-list .search input {
+  background-color: #333;
+}
+
+.black .nav .tool-list .search i {
+  background-image: url('../assets/search-white.svg');
+}
+
+.black .nav .tool-list .search i:hover {
+  background-color: #fff;
+  background-image: url('../assets/search.svg')
+}
+
+.black .nav .tool-list .login-btn i {
+  background-image: url('../assets/login-w.svg');
+}
+
+.black .nav .tool-list .login-btn i:hover {
+  background-color: #fff;
+  background-image: url('../assets/login.svg');
+}
+
+.black .nav .tool-list .logout-btn i {
+  background-image: url('../assets/logout-w.svg');
+}
+
+.black .nav .tool-list .logout-btn i:hover {
+  background-color: #fff;
+  background-image: url('../assets/logout.svg');
+}
+
+.black .nav .tool-list .style i {
+  background-image: url('../assets/bg-colors-w.svg');
+}
+
+.black .nav .tool-list .style i:hover {
+  background-color: #fff;
+  background-image: url('../assets/bg-colors.svg');
 }
 </style>

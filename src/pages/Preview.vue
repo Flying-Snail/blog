@@ -9,7 +9,7 @@
         <i class="like" :class="{liked: liked}" @click="handleClickLike(postData._id)"></i>
         <i class="message" @click="goToMessage"></i>
       </div>
-      <Comment :num="postData.comment_num" :postID="postData._id"></Comment>
+      <Comment :postID="postData._id"></Comment>
     </div>
   </div>
 </template>
@@ -47,7 +47,6 @@ export default {
     if (!window.localStorage.getItem('token')) return
 
     this.$http.get(`${user_url}/show`).then(resp => {
-
       this.liked = resp.data.liked_posts && resp.data.liked_posts.includes(this.$route.params.id)
     })
   },
@@ -68,7 +67,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .preview{
   position: relative;
   width: 100%;
@@ -121,5 +120,16 @@ export default {
 .tool .message {
   background-image: url("../assets/message-fill.svg");
   background-size: 100%;
+}
+</style>
+
+<style>
+.black .v-show-content {
+  background-color: rgba(50, 50, 50, 0.97) !important;
+  color: #ccc !important;
+}
+.black .v-show-content *{
+  background-color: rgba(50, 50, 50, 0.97) !important;
+  color: #ccc !important;
 }
 </style>

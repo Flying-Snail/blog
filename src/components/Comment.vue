@@ -8,7 +8,7 @@
   </div>
 
   <div class="comment-list">
-    <p class="title">已有{{num}}条评论</p>
+    <p class="title">已有{{commentNum}}条评论</p>
 
     <ul class="list-area">
       <li v-for="(comment, index) in commentList" :key="comment._id">
@@ -60,12 +60,13 @@ const comment_url = "http://127.0.0.1:3333/admin/api/comment"
 const user_url = "http://127.0.0.1:3333/admin/api/users"
 
 export default {
-  props: ['num', 'postID'],
+  props: ['postID'],
   data () {
     return {
       content: '',
       user_id: '',
       commentList: [],
+      commentNum: 0,
       replyContent: '',
       asset_url: 'http://images.blog:8002',
       replyed_id: '',
@@ -127,6 +128,7 @@ export default {
 
     updateCommentList () {
       this.$http.get(`${comment_url}/?post_id=${this.postID}`).then(resp => {
+        this.commentNum = resp.data.length
         const commentList = resp.data.filter(comment => {
           return !comment.replyed_id
         })
@@ -250,3 +252,11 @@ ul {
 }
 </style>
 
+<style>
+.black .comment textarea {
+  background-color: rgba(50, 50, 50, 0.97);
+}
+.black .comment button {
+  background-color: rgba(50, 50, 50, 0.97);
+}
+</style>

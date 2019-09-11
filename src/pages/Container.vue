@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Header :title="title"></Header>
     <PostList></PostList>
   </div>
@@ -21,3 +21,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.black .container {
+  background-color: rgba(50, 50, 50, 0.97)
+}
+</style>
